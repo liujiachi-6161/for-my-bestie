@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>💍 婚礼纪念 · 我们的故事</title>
 
-    <!-- Google Fonts 花体英文 + 优雅衬线中文 -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;600&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
 
-    <!-- GLightbox 图片弹窗 CSS -->
+    <!-- GLightbox CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
     <style>
-        /* ===== 全局重置 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -27,7 +26,6 @@
             overflow: hidden;
         }
 
-        /* ===== 整体布局 ===== */
         .app {
             display: flex;
             height: 100vh;
@@ -57,7 +55,6 @@
             padding-bottom: 22px;
             border-bottom: 2px solid #ebe3db;
             margin-bottom: 20px;
-            position: relative;
         }
 
         .sidebar-brand .floral-line {
@@ -66,7 +63,6 @@
             color: #cfb8ab;
             display: block;
             margin-bottom: 2px;
-            font-weight: 300;
         }
 
         .sidebar-brand .brand-cn {
@@ -83,7 +79,6 @@
             font-size: 28px;
             font-weight: 400;
             color: #b28b7a;
-            letter-spacing: 1px;
             display: block;
             margin-top: -2px;
         }
@@ -124,14 +119,13 @@
             background: #f0e8e2;
             transform: translateX(6px);
             color: #4a3a2e;
-            box-shadow: 0 2px 12px rgba(90, 64, 51, 0.06);
         }
 
         .nav-item.active {
             background: #ece1d9;
             color: #4a2e24;
             font-weight: 600;
-            box-shadow: 0 4px 16px rgba(90, 64, 51, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 16px rgba(90, 64, 51, 0.10);
             transform: translateX(8px);
         }
 
@@ -154,7 +148,6 @@
             padding: 0 12px;
             border-radius: 20px;
             line-height: 20px;
-            transition: all 0.3s ease;
         }
 
         .nav-item.active .badge {
@@ -179,7 +172,7 @@
             font-size: 14px;
             letter-spacing: 2px;
             cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.35s ease;
         }
 
         .btn-view-all:hover {
@@ -187,14 +180,12 @@
             border-color: #c4b5a8;
             color: #4a3a2e;
             transform: scale(1.02);
-            box-shadow: 0 4px 16px rgba(90, 64, 51, 0.08);
         }
 
         .btn-view-all.active-mode {
             background: #ece1d9;
             border-color: #c4b5a8;
             color: #4a2e24;
-            box-shadow: 0 4px 16px rgba(90, 64, 51, 0.08);
         }
 
         /* ===== 右侧主内容 ===== */
@@ -207,7 +198,6 @@
             scroll-behavior: smooth;
         }
 
-        /* ===== 章节 ===== */
         .chapter {
             display: none;
             animation: bounceIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -218,18 +208,9 @@
         }
 
         @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.95) translateY(16px);
-            }
-            60% {
-                opacity: 1;
-                transform: scale(1.015) translateY(-3px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            0% { opacity: 0; transform: scale(0.95) translateY(16px); }
+            60% { opacity: 1; transform: scale(1.015) translateY(-3px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .app.show-all .chapter {
@@ -239,26 +220,18 @@
         }
 
         @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(14px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(14px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .app.show-all .chapter:last-child {
             margin-bottom: 0;
         }
 
-        /* ===== 章节头部 ===== */
         .chapter-header {
             margin-bottom: 24px;
             padding-bottom: 14px;
             border-bottom: 2px solid #ebe3db;
-            position: relative;
         }
 
         .chapter-header .floral-divider {
@@ -267,7 +240,6 @@
             color: #cfb8ab;
             display: block;
             margin-bottom: 2px;
-            font-weight: 300;
         }
 
         .chapter-header .title-cn {
@@ -290,7 +262,6 @@
             font-size: 22px;
             font-weight: 400;
             color: #b28b7a;
-            letter-spacing: 1px;
             display: block;
             margin-top: -4px;
         }
@@ -303,7 +274,6 @@
             letter-spacing: 1px;
         }
 
-        /* ===== 图片网格 ===== */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -319,7 +289,7 @@
             cursor: pointer;
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
             transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        box-shadow 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+                        box-shadow 0.45s ease;
             background: #f0ebe6;
         }
 
@@ -340,7 +310,6 @@
             transform: scale(1.04);
         }
 
-        /* ===== 视频 ===== */
         .video-container {
             margin-top: 8px;
             border-radius: 20px;
@@ -358,7 +327,6 @@
             background: #0d0d0d;
         }
 
-        /* ===== 滚动条 ===== */
         .main::-webkit-scrollbar {
             width: 4px;
         }
@@ -381,48 +349,20 @@
             border-radius: 4px;
         }
 
-        /* ===== 响应式 ===== */
         @media (max-width: 820px) {
-            .sidebar {
-                width: 200px;
-                min-width: 200px;
-                padding: 28px 14px 20px;
-            }
-            .sidebar-brand .brand-cn {
-                font-size: 17px;
-            }
-            .sidebar-brand .brand-en {
-                font-size: 24px;
-            }
-            .chapter-header .title-cn {
-                font-size: 24px;
-            }
-            .chapter-header .title-en {
-                font-size: 19px;
-            }
-            .photo-grid {
-                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-                gap: 14px;
-            }
-            .photo-grid .photo-item {
-                height: 180px;
-                border-radius: 14px;
-            }
-            .main {
-                padding: 28px 28px 40px;
-            }
+            .sidebar { width: 200px; min-width: 200px; padding: 28px 14px 20px; }
+            .sidebar-brand .brand-cn { font-size: 17px; }
+            .sidebar-brand .brand-en { font-size: 24px; }
+            .chapter-header .title-cn { font-size: 24px; }
+            .chapter-header .title-en { font-size: 19px; }
+            .photo-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+            .photo-grid .photo-item { height: 180px; border-radius: 14px; }
+            .main { padding: 28px 28px 40px; }
         }
 
         @media (max-width: 600px) {
-            body {
-                overflow: auto;
-                height: auto;
-            }
-            .app {
-                flex-direction: column;
-                height: auto;
-                min-height: 100vh;
-            }
+            body { overflow: auto; height: auto; }
+            .app { flex-direction: column; height: auto; min-height: 100vh; }
             .sidebar {
                 width: 100%;
                 min-width: unset;
@@ -438,7 +378,6 @@
                 top: 0;
                 z-index: 100;
                 transition: max-height 0.4s ease;
-                box-shadow: 0 2px 16px rgba(0, 0, 0, 0.03);
             }
             .sidebar.open {
                 max-height: 440px;
@@ -457,18 +396,10 @@
                 flex-shrink: 0;
                 cursor: pointer;
             }
-            .sidebar-brand .brand-cn {
-                font-size: 17px;
-            }
-            .sidebar-brand .brand-en {
-                font-size: 22px;
-            }
-            .sidebar-brand .brand-sub {
-                display: none;
-            }
-            .sidebar-brand .floral-line {
-                display: none;
-            }
+            .sidebar-brand .brand-cn { font-size: 17px; }
+            .sidebar-brand .brand-en { font-size: 22px; }
+            .sidebar-brand .brand-sub { display: none; }
+            .sidebar-brand .floral-line { display: none; }
             .menu-toggle {
                 font-size: 24px;
                 color: #a67c6b;
@@ -477,55 +408,20 @@
                 cursor: pointer;
                 padding: 4px 8px;
             }
-            .sidebar-nav {
-                padding: 4px 0 8px;
-                width: 100%;
-            }
-            .nav-item {
-                padding: 8px 14px;
-                font-size: 14px;
-            }
-            .sidebar-footer {
-                display: none;
-            }
-            .sidebar.open .sidebar-footer {
-                display: block;
-                width: 100%;
-                padding: 12px 0 4px;
-                border-top: 1px solid #ebe3db;
-            }
-            .main {
-                padding: 16px 16px 40px;
-                height: auto;
-                overflow: visible;
-                flex: 1;
-            }
-            .photo-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            .photo-grid .photo-item {
-                height: 150px;
-                border-radius: 12px;
-            }
-            .chapter-header .title-cn {
-                font-size: 20px;
-            }
-            .chapter-header .title-en {
-                font-size: 17px;
-            }
-            .chapter-header .sub {
-                font-size: 14px;
-            }
-            .video-container video {
-                max-height: 300px;
-            }
-            .app.show-all .chapter {
-                margin-bottom: 36px;
-            }
+            .sidebar-nav { padding: 4px 0 8px; width: 100%; }
+            .nav-item { padding: 8px 14px; font-size: 14px; }
+            .sidebar-footer { display: none; }
+            .sidebar.open .sidebar-footer { display: block; width: 100%; padding: 12px 0 4px; border-top: 1px solid #ebe3db; }
+            .main { padding: 16px 16px 40px; height: auto; overflow: visible; flex: 1; }
+            .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .photo-grid .photo-item { height: 150px; border-radius: 12px; }
+            .chapter-header .title-cn { font-size: 20px; }
+            .chapter-header .title-en { font-size: 17px; }
+            .chapter-header .sub { font-size: 14px; }
+            .video-container video { max-height: 300px; }
+            .app.show-all .chapter { margin-bottom: 36px; }
         }
 
-        /* 移动端菜单按钮显示 */
         .sidebar .sidebar-brand .menu-toggle {
             display: none;
         }
@@ -535,18 +431,16 @@
             }
         }
 
-        /* ===== GLightbox 弹窗阴影增强 ===== */
+        /* GLightbox 阴影增强 */
         .glightbox-container .gslide-media {
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
             border-radius: 12px;
             overflow: hidden;
         }
-
         .glightbox-container .gslide-image img {
             border-radius: 12px;
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.40);
         }
-
         .glightbox-container .gslide-description {
             background: rgba(252, 249, 247, 0.92);
             backdrop-filter: blur(8px);
@@ -554,25 +448,18 @@
             padding: 18px 28px;
             font-family: "Noto Serif SC", serif;
             color: #3d2c1e;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
-        }
-
-        .glightbox-container .gclose,
-        .glightbox-container .gnext,
-        .glightbox-container .gprev {
-            filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.3));
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== 飘落花瓣容器（必须放在 body 最前面） ===== -->
+    <!-- ===== 花瓣容器 ===== -->
     <div id="sakura-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden;"></div>
 
-    <!-- ===== 左侧目录 + 右侧内容 ===== -->
+    <!-- ===== 主体 ===== -->
     <div class="app" id="app">
 
-        <!-- ===== 侧边栏 ===== -->
+        <!-- 侧边栏 -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-brand" id="menuToggle">
                 <div>
@@ -585,36 +472,12 @@
             </div>
 
             <nav class="sidebar-nav" id="navList">
-                <button class="nav-item active" data-target="chapter-flower">
-                    <span class="icon">🌸</span>
-                    <span class="label">花墙 · 晨光</span>
-                    <span class="badge">7</span>
-                </button>
-                <button class="nav-item" data-target="chapter-outdoor">
-                    <span class="icon">🌳</span>
-                    <span class="label">户外 · 奔赴</span>
-                    <span class="badge">7</span>
-                </button>
-                <button class="nav-item" data-target="chapter-reception">
-                    <span class="icon">🚗</span>
-                    <span class="label">接亲 · 欢庆</span>
-                    <span class="badge">8</span>
-                </button>
-                <button class="nav-item" data-target="chapter-bride">
-                    <span class="icon">👰</span>
-                    <span class="label">新娘 · 新房</span>
-                    <span class="badge">8</span>
-                </button>
-                <button class="nav-item" data-target="chapter-ceremony">
-                    <span class="icon">💍</span>
-                    <span class="label">仪式 · 盟约</span>
-                    <span class="badge">8</span>
-                </button>
-                <button class="nav-item" data-target="chapter-video">
-                    <span class="icon">🎬</span>
-                    <span class="label">全程影像</span>
-                    <span class="badge">🎥</span>
-                </button>
+                <button class="nav-item active" data-target="chapter-flower"><span class="icon">🌸</span><span class="label">花墙 · 晨光</span><span class="badge">7</span></button>
+                <button class="nav-item" data-target="chapter-outdoor"><span class="icon">🌳</span><span class="label">户外 · 奔赴</span><span class="badge">7</span></button>
+                <button class="nav-item" data-target="chapter-reception"><span class="icon">🚗</span><span class="label">接亲 · 欢庆</span><span class="badge">8</span></button>
+                <button class="nav-item" data-target="chapter-bride"><span class="icon">👰</span><span class="label">新娘 · 新房</span><span class="badge">8</span></button>
+                <button class="nav-item" data-target="chapter-ceremony"><span class="icon">💍</span><span class="label">仪式 · 盟约</span><span class="badge">8</span></button>
+                <button class="nav-item" data-target="chapter-video"><span class="icon">🎬</span><span class="label">全程影像</span><span class="badge">🎥</span></button>
             </nav>
 
             <div class="sidebar-footer">
@@ -622,7 +485,7 @@
             </div>
         </aside>
 
-        <!-- ===== 主内容 ===== -->
+        <!-- 主内容 -->
         <main class="main" id="mainContent">
 
             <!-- 花墙 -->
@@ -743,37 +606,111 @@
                 </div>
             </section>
 
-<!-- ===== 页脚声明 ===== -->
+            <!-- ===== 页脚声明 ===== -->
             <div style="text-align:center; padding:30px 0 10px; font-family:'Noto Serif SC',serif; font-size:13px; color:#b8a8a0; letter-spacing:1px; border-top:1px solid #ebe3db; margin-top:30px;">
                 <div>本网站为个人纪念 · 非商业用途 · 请勿商用</div>
-               <div style="margin-top:4px; color:#d4738a;">❤️ 祝福每一份爱 ❤️</div>
+                <div style="margin-top:4px; color:#d4738a;">❤️ 祝福每一份爱 ❤️</div>
             </div>
 
         </main>
     </div>
 
-    <!-- ===== 花瓣飘落 (sakura) ===== -->
-    <script src="https://unpkg.com/sakura-js@1.0.6/sakura.min.js"></script>
+    <!-- ===== 纯内联 Canvas 花瓣（不依赖任何外部库） ===== -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 花瓣数量 60 片，粉色系，大小适中
-            var sakura = new Sakura('#sakura-container', {
-                colors: [
-                    { r: 255, g: 182, b: 193 },  // 樱花粉
-                    { r: 255, g: 218, b: 185 },  // 浅珊瑚
-                    { r: 255, g: 240, b: 245 },  // 淡粉
-                    { r: 255, g: 205, b: 210 }   // 粉红
-                ],
-                gravity: 0.2,      // 重力
-                wind: 0.15,        // 水平飘动
-                speed: 0.6,        // 下落速度
-                num: 65,           // 花瓣数量（65片，不遮挡）
-                width: window.innerWidth,
-                height: window.innerHeight,
-                rotation: 30,
-                scale: 0.8
-            });
-        });
+        (function() {
+            var container = document.getElementById('sakura-container');
+            if (!container) return;
+
+            var canvas = document.createElement('canvas');
+            canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+            container.appendChild(canvas);
+            var ctx = canvas.getContext('2d');
+
+            var width, height;
+            var petals = [];
+            var count = 65;
+            var colors = [
+                'rgba(255, 182, 193, 0.8)',
+                'rgba(255, 218, 185, 0.8)',
+                'rgba(255, 240, 245, 0.8)',
+                'rgba(255, 205, 210, 0.8)',
+                'rgba(255, 192, 203, 0.7)'
+            ];
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+
+            function Petal() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height - height;
+                this.size = 8 + Math.random() * 10;
+                this.speedY = 0.4 + Math.random() * 0.6;
+                this.speedX = -0.2 + Math.random() * 0.4;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = 0.5 + Math.random() * 1.5;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.opacity = 0.6 + Math.random() * 0.4;
+            }
+
+            Petal.prototype.update = function() {
+                this.y += this.speedY;
+                this.x += this.speedX + Math.sin(this.y * 0.01) * 0.3;
+                this.rotation += this.rotationSpeed;
+                if (this.y > height + 20) {
+                    this.y = -20;
+                    this.x = Math.random() * width;
+                }
+                if (this.x < -20) this.x = width + 20;
+                if (this.x > width + 20) this.x = -20;
+            };
+
+            Petal.prototype.draw = function() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size * 0.6, this.size * 0.4, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = 'rgba(255,255,255,0.2)';
+                ctx.beginPath();
+                ctx.ellipse(-2, -2, this.size * 0.2, this.size * 0.15, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            };
+
+            function init() {
+                resize();
+                petals = [];
+                for (var i = 0; i < count; i++) {
+                    var p = new Petal();
+                    p.y = Math.random() * height;
+                    petals.push(p);
+                }
+                animate();
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                for (var i = 0; i < petals.length; i++) {
+                    petals[i].update();
+                    petals[i].draw();
+                }
+                requestAnimationFrame(animate);
+            }
+
+            window.addEventListener('resize', resize);
+            if (document.readyState === 'complete') {
+                init();
+            } else {
+                window.addEventListener('load', init);
+            }
+        })();
     </script>
 
     <!-- ===== GLightbox 图片弹窗 JS ===== -->
@@ -782,7 +719,7 @@
     <!-- ===== 交互逻辑 ===== -->
     <script>
         (function() {
-            // ---- GLightbox 初始化 ----
+            // GLightbox 初始化
             const lightbox = GLightbox({
                 touchNavigation: true,
                 loop: true,
@@ -791,13 +728,10 @@
                 openEffect: 'zoom',
                 closeEffect: 'zoom',
                 slideEffect: 'slide',
-                moreLength: 0,
-                plyr: {
-                    controls: ['play', 'pause', 'volume', 'fullscreen']
-                }
+                plyr: { controls: ['play', 'pause', 'volume', 'fullscreen'] }
             });
 
-            // ---- 目录切换 ----
+            // 目录切换
             const app = document.getElementById('app');
             const navItems = document.querySelectorAll('.nav-item');
             const chapters = document.querySelectorAll('.chapter');
@@ -819,7 +753,6 @@
                     ch.classList.toggle('active', ch.id === targetId);
                 });
                 if (window.innerWidth <= 600) sidebar.classList.remove('open');
-                // 滚动到顶部
                 document.getElementById('mainContent').scrollTop = 0;
             }
 
@@ -852,14 +785,12 @@
 
             navItems.forEach(item => {
                 item.addEventListener('click', function() {
-                    const target = this.dataset.target;
-                    if (target) switchChapter(target);
+                    if (this.dataset.target) switchChapter(this.dataset.target);
                 });
             });
 
             viewAllBtn.addEventListener('click', toggleViewAll);
 
-            // ---- 移动端菜单 ----
             if (menuBtn && menuToggle) {
                 menuToggle.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -880,7 +811,6 @@
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && isViewAll) exitViewAll();
             });
-
         })();
     </script>
 

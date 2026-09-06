@@ -752,17 +752,29 @@
         </main>
     </div>
 
-    <!-- ===== 花瓣飘落 (sakura-rain) ===== -->
+    <!-- ===== 花瓣飘落 (sakura) ===== -->
+    <script src="https://unpkg.com/sakura-js@1.0.6/sakura.min.js"></script>
     <script>
-        // 配置 sakura-rain：数量 70 片，适中不遮挡
-        window.sakuraConfig = {
-            sakura: 70,
-            xSpeed: 0.6,
-            ySpeed: 0.5,
-            img: null
-        };
+        document.addEventListener('DOMContentLoaded', function() {
+            // 花瓣数量 60 片，粉色系，大小适中
+            var sakura = new Sakura('#sakura-container', {
+                colors: [
+                    { r: 255, g: 182, b: 193 },  // 樱花粉
+                    { r: 255, g: 218, b: 185 },  // 浅珊瑚
+                    { r: 255, g: 240, b: 245 },  // 淡粉
+                    { r: 255, g: 205, b: 210 }   // 粉红
+                ],
+                gravity: 0.2,      // 重力
+                wind: 0.15,        // 水平飘动
+                speed: 0.6,        // 下落速度
+                num: 65,           // 花瓣数量（65片，不遮挡）
+                width: window.innerWidth,
+                height: window.innerHeight,
+                rotation: 30,
+                scale: 0.8
+            });
+        });
     </script>
-    <script src="https://cdn.jsdelivr.net/gh/minz71/sakura-rain@v1.1.0/sakura-rain.js" defer></script>
 
     <!-- ===== GLightbox 图片弹窗 JS ===== -->
     <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>

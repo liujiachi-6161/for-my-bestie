@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>💍 婚礼纪念 · 我们的故事</title>
+
+    <!-- Google Fonts 花体英文 + 优雅衬线中文 -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;600&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+    <!-- GLightbox 图片弹窗 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
     <style>
         /* ===== 全局重置 ===== */
         * {
@@ -13,178 +20,233 @@
         }
 
         body {
-            font-family: "Georgia", "Times New Roman", "PingFang SC", "Microsoft YaHei", serif;
-            background: #ffffff;
+            font-family: "Noto Serif SC", "Playfair Display", "Georgia", serif;
+            background: #fcf9f7;
             color: #2c2c2c;
             height: 100vh;
             overflow: hidden;
         }
 
-        /* ===== 整体布局：左侧目录 + 右侧内容 ===== */
+        /* ===== 整体布局 ===== */
         .app {
             display: flex;
             height: 100vh;
             width: 100vw;
-            background: #ffffff;
+            background: #fcf9f7;
         }
 
-        /* ===== 左侧目录栏 ===== */
+        /* ===== 左侧目录 ===== */
         .sidebar {
-            width: 220px;
-            min-width: 220px;
-            background: #fcf9f6;
-            border-right: 1px solid #eee8e2;
+            width: 250px;
+            min-width: 250px;
+            background: #faf7f4;
+            border-right: 1px solid #ebe3db;
             display: flex;
             flex-direction: column;
-            padding: 32px 0 24px;
+            padding: 40px 20px 28px;
             height: 100vh;
             position: sticky;
             top: 0;
             overflow-y: auto;
+            box-shadow: 2px 0 30px rgba(0, 0, 0, 0.03);
+            z-index: 10;
         }
 
         .sidebar-brand {
-            padding: 0 24px 20px;
-            border-bottom: 1px solid #eee8e2;
-            margin-bottom: 16px;
+            text-align: center;
+            padding-bottom: 22px;
+            border-bottom: 2px solid #ebe3db;
+            margin-bottom: 20px;
+            position: relative;
         }
 
-        .sidebar-brand h1 {
-            font-size: 18px;
+        .sidebar-brand .floral-line {
+            font-size: 20px;
+            letter-spacing: 10px;
+            color: #cfb8ab;
+            display: block;
+            margin-bottom: 2px;
+            font-weight: 300;
+        }
+
+        .sidebar-brand .brand-cn {
+            font-family: "Noto Serif SC", serif;
+            font-size: 20px;
             font-weight: 600;
-            color: #a67c6b;
-            letter-spacing: 3px;
-            line-height: 1.4;
+            color: #5a4033;
+            letter-spacing: 4px;
+            line-height: 1.3;
         }
 
-        .sidebar-brand p {
-            font-size: 11px;
-            color: #c4b5a8;
+        .sidebar-brand .brand-en {
+            font-family: "Great Vibes", cursive;
+            font-size: 28px;
+            font-weight: 400;
+            color: #b28b7a;
+            letter-spacing: 1px;
+            display: block;
+            margin-top: -2px;
+        }
+
+        .sidebar-brand .brand-sub {
+            font-family: "Dancing Script", cursive;
+            font-size: 14px;
+            color: #c4b0a2;
+            margin-top: 2px;
             letter-spacing: 2px;
-            margin-top: 4px;
-            font-style: italic;
         }
 
         .sidebar-nav {
             flex: 1;
-            padding: 0 12px;
+            padding: 4px 0;
         }
 
         .nav-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 10px 16px;
-            margin: 2px 0;
-            border-radius: 8px;
+            gap: 14px;
+            padding: 12px 18px;
+            margin: 4px 0;
+            border-radius: 40px;
             cursor: pointer;
-            transition: all 0.25s ease;
-            font-size: 14px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-family: "Noto Serif SC", serif;
+            font-size: 15px;
             color: #7a6b5e;
-            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-            letter-spacing: 0.5px;
             border: none;
             background: transparent;
             width: 100%;
             text-align: left;
+            letter-spacing: 0.5px;
         }
 
         .nav-item:hover {
-            background: #f3ede8;
+            background: #f0e8e2;
+            transform: translateX(6px);
             color: #4a3a2e;
+            box-shadow: 0 2px 12px rgba(90, 64, 51, 0.06);
         }
 
         .nav-item.active {
-            background: #e8ddd5;
+            background: #ece1d9;
             color: #4a2e24;
             font-weight: 600;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 16px rgba(90, 64, 51, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transform: translateX(8px);
         }
 
         .nav-item .icon {
-            font-size: 18px;
-            width: 28px;
+            font-size: 20px;
+            width: 32px;
             text-align: center;
             flex-shrink: 0;
         }
 
         .nav-item .label {
-            white-space: nowrap;
+            flex: 1;
         }
 
         .nav-item .badge {
-            margin-left: auto;
-            font-size: 10px;
+            font-family: "Dancing Script", cursive;
+            font-size: 12px;
             color: #b8a89a;
-            background: #f0ebe6;
-            padding: 0 8px;
-            border-radius: 10px;
-            line-height: 18px;
+            background: #f0e8e2;
+            padding: 0 12px;
+            border-radius: 20px;
+            line-height: 20px;
+            transition: all 0.3s ease;
         }
 
         .nav-item.active .badge {
-            background: #d4c5b8;
+            background: #dccfc7;
             color: #5a4033;
         }
 
-        /* ===== 侧边栏底部 ===== */
         .sidebar-footer {
-            padding: 16px 24px 0;
-            border-top: 1px solid #eee8e2;
+            padding-top: 18px;
+            border-top: 2px solid #ebe3db;
             margin-top: 8px;
         }
 
-        .sidebar-footer .btn-view-all {
+        .btn-view-all {
             width: 100%;
-            padding: 8px 0;
-            border: 1px solid #ddd2c8;
-            border-radius: 20px;
+            padding: 12px 0;
+            border: 1.5px solid #ddd0c6;
+            border-radius: 40px;
             background: transparent;
             color: #8a7a6c;
-            font-size: 12px;
-            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-family: "Noto Serif SC", serif;
+            font-size: 14px;
+            letter-spacing: 2px;
             cursor: pointer;
-            transition: all 0.25s ease;
-            letter-spacing: 1px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .sidebar-footer .btn-view-all:hover {
-            background: #f3ede8;
+        .btn-view-all:hover {
+            background: #f0e8e2;
             border-color: #c4b5a8;
             color: #4a3a2e;
+            transform: scale(1.02);
+            box-shadow: 0 4px 16px rgba(90, 64, 51, 0.08);
         }
 
-        .sidebar-footer .btn-view-all.active-mode {
-            background: #e8ddd5;
+        .btn-view-all.active-mode {
+            background: #ece1d9;
             border-color: #c4b5a8;
             color: #4a2e24;
+            box-shadow: 0 4px 16px rgba(90, 64, 51, 0.08);
         }
 
-        /* ===== 右侧主内容区 ===== */
+        /* ===== 右侧主内容 ===== */
         .main {
             flex: 1;
             height: 100vh;
             overflow-y: auto;
-            padding: 32px 40px 60px;
-            background: #ffffff;
+            padding: 40px 48px 60px;
+            background: #fcf9f7;
             scroll-behavior: smooth;
         }
 
-        /* ===== 章节内容（默认隐藏，通过JS切换） ===== */
+        /* ===== 章节 ===== */
         .chapter {
             display: none;
-            animation: fadeUp 0.4s ease forwards;
+            animation: bounceIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
 
         .chapter.active {
             display: block;
         }
 
-        /* 全部查看模式：所有章节都显示 */
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.95) translateY(16px);
+            }
+            60% {
+                opacity: 1;
+                transform: scale(1.015) translateY(-3px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
         .app.show-all .chapter {
             display: block !important;
-            animation: fadeUp 0.3s ease forwards;
-            margin-bottom: 48px;
+            animation: fadeUp 0.45s ease forwards;
+            margin-bottom: 56px;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .app.show-all .chapter:last-child {
@@ -193,93 +255,115 @@
 
         /* ===== 章节头部 ===== */
         .chapter-header {
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #f0ebe6;
+            margin-bottom: 24px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #ebe3db;
+            position: relative;
         }
 
-        .chapter-header h2 {
-            font-size: 26px;
+        .chapter-header .floral-divider {
+            font-size: 18px;
+            letter-spacing: 12px;
+            color: #cfb8ab;
+            display: block;
+            margin-bottom: 2px;
+            font-weight: 300;
+        }
+
+        .chapter-header .title-cn {
+            font-family: "Noto Serif SC", serif;
+            font-size: 28px;
             font-weight: 600;
             color: #3d2c1e;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .chapter-header h2 .emoji {
+        .chapter-header .title-cn .emoji {
             font-size: 28px;
         }
 
+        .chapter-header .title-en {
+            font-family: "Great Vibes", cursive;
+            font-size: 22px;
+            font-weight: 400;
+            color: #b28b7a;
+            letter-spacing: 1px;
+            display: block;
+            margin-top: -4px;
+        }
+
         .chapter-header .sub {
-            font-size: 13px;
-            color: #b8a89a;
-            margin-top: 4px;
-            font-style: italic;
+            font-family: "Dancing Script", cursive;
+            font-size: 17px;
+            color: #c4b0a2;
+            margin-top: 2px;
             letter-spacing: 1px;
         }
 
         /* ===== 图片网格 ===== */
         .photo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 14px;
-            margin-top: 6px;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 18px;
+            margin-top: 8px;
         }
 
-        .photo-grid img {
+        .photo-grid .photo-item {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #f5f0eb;
+            height: 220px;
+            border-radius: 18px;
+            overflow: hidden;
             cursor: pointer;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: #f0ebe6;
         }
 
-        .photo-grid img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+        .photo-grid .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
         }
 
-        /* ===== 视频容器 ===== */
+        .photo-grid .photo-item:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(90, 64, 51, 0.14);
+        }
+
+        .photo-grid .photo-item:hover img {
+            transform: scale(1.04);
+        }
+
+        /* ===== 视频 ===== */
         .video-container {
-            margin-top: 6px;
-            border-radius: 12px;
+            margin-top: 8px;
+            border-radius: 20px;
             overflow: hidden;
             background: #1a1a1a;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
         }
 
         .video-container video {
             display: block;
             width: 100%;
             height: auto;
-            max-height: 560px;
+            max-height: 600px;
             object-fit: contain;
             background: #0d0d0d;
         }
 
-        /* ===== 动画 ===== */
-        @keyframes fadeUp {
-            0% {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== 滚动条美化 ===== */
+        /* ===== 滚动条 ===== */
         .main::-webkit-scrollbar {
             width: 4px;
         }
         .main::-webkit-scrollbar-track {
-            background: #f5f0eb;
+            background: #f0ebe6;
         }
         .main::-webkit-scrollbar-thumb {
             background: #d4c5b8;
@@ -297,40 +381,38 @@
             border-radius: 4px;
         }
 
-        /* ===== 响应式：平板 ===== */
+        /* ===== 响应式 ===== */
         @media (max-width: 820px) {
             .sidebar {
-                width: 180px;
-                min-width: 180px;
-                padding: 20px 0 16px;
+                width: 200px;
+                min-width: 200px;
+                padding: 28px 14px 20px;
             }
-            .sidebar-brand h1 {
-                font-size: 15px;
+            .sidebar-brand .brand-cn {
+                font-size: 17px;
             }
-            .nav-item {
-                font-size: 13px;
-                padding: 8px 12px;
+            .sidebar-brand .brand-en {
+                font-size: 24px;
             }
-            .nav-item .icon {
-                font-size: 16px;
-                width: 24px;
+            .chapter-header .title-cn {
+                font-size: 24px;
             }
-            .main {
-                padding: 24px 24px 40px;
+            .chapter-header .title-en {
+                font-size: 19px;
             }
             .photo-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 10px;
+                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+                gap: 14px;
             }
-            .photo-grid img {
-                height: 160px;
+            .photo-grid .photo-item {
+                height: 180px;
+                border-radius: 14px;
             }
-            .chapter-header h2 {
-                font-size: 22px;
+            .main {
+                padding: 28px 28px 40px;
             }
         }
 
-        /* ===== 响应式：手机 ===== */
         @media (max-width: 600px) {
             body {
                 overflow: auto;
@@ -345,20 +427,21 @@
                 width: 100%;
                 min-width: unset;
                 height: auto;
-                max-height: 64px;
+                max-height: 58px;
                 overflow: hidden;
                 flex-direction: row;
                 padding: 0 16px;
                 border-right: none;
-                border-bottom: 1px solid #eee8e2;
-                background: #fcf9f6;
+                border-bottom: 1px solid #ebe3db;
+                background: #faf7f4;
                 position: sticky;
                 top: 0;
                 z-index: 100;
-                transition: max-height 0.3s ease;
+                transition: max-height 0.4s ease;
+                box-shadow: 0 2px 16px rgba(0, 0, 0, 0.03);
             }
             .sidebar.open {
-                max-height: 420px;
+                max-height: 440px;
                 overflow-y: auto;
                 flex-direction: column;
                 padding: 12px 16px 16px;
@@ -374,14 +457,20 @@
                 flex-shrink: 0;
                 cursor: pointer;
             }
-            .sidebar-brand h1 {
-                font-size: 15px;
+            .sidebar-brand .brand-cn {
+                font-size: 17px;
             }
-            .sidebar-brand p {
+            .sidebar-brand .brand-en {
+                font-size: 22px;
+            }
+            .sidebar-brand .brand-sub {
                 display: none;
             }
-            .sidebar-brand .menu-toggle {
-                font-size: 22px;
+            .sidebar-brand .floral-line {
+                display: none;
+            }
+            .menu-toggle {
+                font-size: 24px;
                 color: #a67c6b;
                 background: none;
                 border: none;
@@ -393,7 +482,7 @@
                 width: 100%;
             }
             .nav-item {
-                padding: 8px 12px;
+                padding: 8px 14px;
                 font-size: 14px;
             }
             .sidebar-footer {
@@ -403,7 +492,7 @@
                 display: block;
                 width: 100%;
                 padding: 12px 0 4px;
-                border-top: 1px solid #eee8e2;
+                border-top: 1px solid #ebe3db;
             }
             .main {
                 padding: 16px 16px 40px;
@@ -413,183 +502,249 @@
             }
             .photo-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
+                gap: 10px;
             }
-            .photo-grid img {
-                height: 140px;
+            .photo-grid .photo-item {
+                height: 150px;
+                border-radius: 12px;
             }
-            .chapter-header h2 {
-                font-size: 18px;
+            .chapter-header .title-cn {
+                font-size: 20px;
+            }
+            .chapter-header .title-en {
+                font-size: 17px;
+            }
+            .chapter-header .sub {
+                font-size: 14px;
             }
             .video-container video {
-                max-height: 320px;
+                max-height: 300px;
             }
             .app.show-all .chapter {
-                margin-bottom: 32px;
+                margin-bottom: 36px;
             }
         }
 
-        /* 手机端侧边栏展开时遮罩 */
-        .sidebar-backdrop {
+        /* 移动端菜单按钮显示 */
+        .sidebar .sidebar-brand .menu-toggle {
             display: none;
         }
         @media (max-width: 600px) {
-            .sidebar.open .sidebar-backdrop {
-                display: none;
+            .sidebar .sidebar-brand .menu-toggle {
+                display: block;
             }
+        }
+
+        /* ===== GLightbox 弹窗阴影增强 ===== */
+        .glightbox-container .gslide-media {
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .glightbox-container .gslide-description {
+            background: rgba(255, 252, 249, 0.92);
+            backdrop-filter: blur(8px);
+            border-radius: 0 0 12px 12px;
+            padding: 16px 24px;
+            font-family: "Noto Serif SC", serif;
+            color: #3d2c1e;
+        }
+
+        .glightbox-container .gslide-description .desc {
+            font-family: "Noto Serif SC", serif;
+            color: #5a4033;
+        }
+
+        .glightbox-container .gclose,
+        .glightbox-container .gnext,
+        .glightbox-container .gprev {
+            filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.3));
+        }
+
+        /* 弹窗背景遮罩加深 */
+        .glightbox-container .gslide-media {
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.50);
+        }
+
+        .glightbox-container .gslide-image img {
+            border-radius: 12px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.40);
+        }
+
+        .glightbox-container .gslide-description {
+            background: rgba(252, 249, 247, 0.92);
+            backdrop-filter: blur(8px);
+            border-radius: 0 0 16px 16px;
+            padding: 18px 28px;
+            font-family: "Noto Serif SC", serif;
+            color: #3d2c1e;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
         }
     </style>
 </head>
 <body>
 
+    <!-- ===== 左侧目录 + 右侧内容 ===== -->
     <div class="app" id="app">
 
-        <!-- ===== 左侧目录栏 ===== -->
+        <!-- ===== 侧边栏 ===== -->
         <aside class="sidebar" id="sidebar">
-            <!-- 品牌 + 移动端切换按钮 -->
             <div class="sidebar-brand" id="menuToggle">
                 <div>
-                    <h1>💍 婚礼纪念</h1>
-                    <p>· 从晨光到誓言 ·</p>
+                    <span class="floral-line">❁ ✿ ❁</span>
+                    <div class="brand-cn">婚礼纪念</div>
+                    <span class="brand-en">Our Wedding</span>
+                    <div class="brand-sub">· 从晨光到誓言 ·</div>
                 </div>
                 <button class="menu-toggle" id="menuBtn" aria-label="菜单">☰</button>
             </div>
 
-            <!-- 导航 -->
             <nav class="sidebar-nav" id="navList">
                 <button class="nav-item active" data-target="chapter-flower">
                     <span class="icon">🌸</span>
-                    <span class="label">花墙</span>
+                    <span class="label">花墙 · 晨光</span>
                     <span class="badge">7</span>
                 </button>
                 <button class="nav-item" data-target="chapter-outdoor">
                     <span class="icon">🌳</span>
-                    <span class="label">户外</span>
+                    <span class="label">户外 · 奔赴</span>
                     <span class="badge">7</span>
                 </button>
                 <button class="nav-item" data-target="chapter-reception">
                     <span class="icon">🚗</span>
-                    <span class="label">接亲</span>
+                    <span class="label">接亲 · 欢庆</span>
                     <span class="badge">8</span>
                 </button>
                 <button class="nav-item" data-target="chapter-bride">
                     <span class="icon">👰</span>
-                    <span class="label">新娘·新房</span>
+                    <span class="label">新娘 · 新房</span>
                     <span class="badge">8</span>
                 </button>
                 <button class="nav-item" data-target="chapter-ceremony">
                     <span class="icon">💍</span>
-                    <span class="label">婚礼现场</span>
+                    <span class="label">仪式 · 盟约</span>
                     <span class="badge">8</span>
                 </button>
                 <button class="nav-item" data-target="chapter-video">
                     <span class="icon">🎬</span>
                     <span class="label">全程影像</span>
-                    <span class="badge">视频</span>
+                    <span class="badge">🎥</span>
                 </button>
             </nav>
 
-            <!-- 底部：查看全部按钮 -->
             <div class="sidebar-footer">
                 <button class="btn-view-all" id="viewAllBtn">📖 查看全部</button>
             </div>
         </aside>
 
-        <!-- ===== 右侧主内容 ===== -->
+        <!-- ===== 主内容 ===== -->
         <main class="main" id="mainContent">
 
-            <!-- ===== 章节：花墙 ===== -->
+            <!-- 花墙 -->
             <section class="chapter active" id="chapter-flower">
                 <div class="chapter-header">
-                    <h2><span class="emoji">🌸</span> 花墙 · 晨光</h2>
+                    <span class="floral-divider">❁ ✿ ❁</span>
+                    <div class="title-cn"><span class="emoji">🌸</span> 花墙 · 晨光</div>
+                    <span class="title-en">Morning Glow</span>
                     <div class="sub">晨光熹微，花香满径</div>
                 </div>
                 <div class="photo-grid">
-                    <img src="https://pic1.imgdb.cn/i/034K67EC5TzerNqc8ZvAfZ.jpg" alt="花墙1" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K67Sp2mo5i5kdJZ9XHM.jpg" alt="花墙2" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K67aCcMySlHcsleE0Lm.jpg" alt="花墙3" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K67Ecbd0eaH6dLUH0hv.jpg" alt="花墙4" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K67ZaP1Yj0CRqbZ3vBT.jpg" alt="花墙5" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K67NMUqPlDZXMh4Tqte.jpg" alt="花墙6" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K67apDcGLkVbIVo5oke.jpg" alt="花墙7" loading="lazy" />
+                    <a href="https://pic1.imgdb.cn/i/034K67EC5TzerNqc8ZvAfZ.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K67EC5TzerNqc8ZvAfZ.jpg" alt="花墙1" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K67Sp2mo5i5kdJZ9XHM.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K67Sp2mo5i5kdJZ9XHM.jpg" alt="花墙2" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K67aCcMySlHcsleE0Lm.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K67aCcMySlHcsleE0Lm.jpg" alt="花墙3" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K67Ecbd0eaH6dLUH0hv.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K67Ecbd0eaH6dLUH0hv.jpg" alt="花墙4" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K67ZaP1Yj0CRqbZ3vBT.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K67ZaP1Yj0CRqbZ3vBT.jpg" alt="花墙5" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K67NMUqPlDZXMh4Tqte.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K67NMUqPlDZXMh4Tqte.jpg" alt="花墙6" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K67apDcGLkVbIVo5oke.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K67apDcGLkVbIVo5oke.jpg" alt="花墙7" loading="lazy" /></div></a>
                 </div>
             </section>
 
-            <!-- ===== 章节：户外 ===== -->
+            <!-- 户外 -->
             <section class="chapter" id="chapter-outdoor">
                 <div class="chapter-header">
-                    <h2><span class="emoji">🌳</span> 户外 · 奔赴</h2>
+                    <span class="floral-divider">❁ ✿ ❁</span>
+                    <div class="title-cn"><span class="emoji">🌳</span> 户外 · 奔赴</div>
+                    <span class="title-en">Walk Together</span>
                     <div class="sub">绿荫之下，携手前行</div>
                 </div>
                 <div class="photo-grid">
-                    <img src="https://pic1.imgdb.cn/i/034K6FQvjIY6FaiugUd3OG.jpg" alt="户外1" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6FOQji2xV4JSo6m3k1.jpg" alt="户外2" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6F6w4aIdrBQWaCq7pf.jpg" alt="户外3" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6FNpOhrZPJMIOMnNkt.jpg" alt="户外4" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6FNvLZqcPD8IPq9LMc.jpg" alt="户外5" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6FF88aQbHFyJftsZJF.jpg" alt="户外6" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6FSw0yBrPrc05arDYs.jpg" alt="户外7" loading="lazy" />
+                    <a href="https://pic1.imgdb.cn/i/034K6FQvjIY6FaiugUd3OG.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6FQvjIY6FaiugUd3OG.jpg" alt="户外1" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6FOQji2xV4JSo6m3k1.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6FOQji2xV4JSo6m3k1.jpg" alt="户外2" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6F6w4aIdrBQWaCq7pf.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6F6w4aIdrBQWaCq7pf.jpg" alt="户外3" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6FNpOhrZPJMIOMnNkt.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6FNpOhrZPJMIOMnNkt.jpg" alt="户外4" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6FNvLZqcPD8IPq9LMc.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6FNvLZqcPD8IPq9LMc.jpg" alt="户外5" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6FF88aQbHFyJftsZJF.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6FF88aQbHFyJftsZJF.jpg" alt="户外6" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6FSw0yBrPrc05arDYs.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6FSw0yBrPrc05arDYs.jpg" alt="户外7" loading="lazy" /></div></a>
                 </div>
             </section>
 
-            <!-- ===== 章节：接亲 ===== -->
+            <!-- 接亲 -->
             <section class="chapter" id="chapter-reception">
                 <div class="chapter-header">
-                    <h2><span class="emoji">🚗</span> 接亲 · 欢庆</h2>
+                    <span class="floral-divider">❁ ✿ ❁</span>
+                    <div class="title-cn"><span class="emoji">🚗</span> 接亲 · 欢庆</div>
+                    <span class="title-en">Joyful Moment</span>
                     <div class="sub">锣鼓喧天，喜气盈门</div>
                 </div>
                 <div class="photo-grid">
-                    <img src="https://pic1.imgdb.cn/i/034K6JeqA09EZxkA9mpm9x.jpg" alt="接亲1" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6Jrm86ixvnFF6zMBVq.jpg" alt="接亲2" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6JXPlCuKgGWnEC5jpM.jpg" alt="接亲3" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6Jpp9UMOoatkOSWLjG.jpg" alt="接亲4" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6JWXZ1EBHyWumDnHA8.jpg" alt="接亲5" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6JZ32Zrkh0TUc4a7Bh.jpg" alt="接亲6" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6JqH2LUN1qU9jwX47e.jpg" alt="接亲7" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6JosTFP9SxoeHjunX5.jpg" alt="接亲8" loading="lazy" />
+                    <a href="https://pic1.imgdb.cn/i/034K6JeqA09EZxkA9mpm9x.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6JeqA09EZxkA9mpm9x.jpg" alt="接亲1" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6Jrm86ixvnFF6zMBVq.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6Jrm86ixvnFF6zMBVq.jpg" alt="接亲2" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6JXPlCuKgGWnEC5jpM.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6JXPlCuKgGWnEC5jpM.jpg" alt="接亲3" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6Jpp9UMOoatkOSWLjG.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6Jpp9UMOoatkOSWLjG.jpg" alt="接亲4" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6JWXZ1EBHyWumDnHA8.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6JWXZ1EBHyWumDnHA8.jpg" alt="接亲5" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6JZ32Zrkh0TUc4a7Bh.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6JZ32Zrkh0TUc4a7Bh.jpg" alt="接亲6" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6JqH2LUN1qU9jwX47e.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6JqH2LUN1qU9jwX47e.jpg" alt="接亲7" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6JosTFP9SxoeHjunX5.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6JosTFP9SxoeHjunX5.jpg" alt="接亲8" loading="lazy" /></div></a>
                 </div>
             </section>
 
-            <!-- ===== 章节：新娘和新房 ===== -->
+            <!-- 新娘和新房 -->
             <section class="chapter" id="chapter-bride">
                 <div class="chapter-header">
-                    <h2><span class="emoji">👰</span> 新娘 · 新房</h2>
+                    <span class="floral-divider">❁ ✿ ❁</span>
+                    <div class="title-cn"><span class="emoji">👰</span> 新娘 · 新房</div>
+                    <span class="title-en">Bride & Home</span>
                     <div class="sub">娇颜如花，新居暖阳</div>
                 </div>
                 <div class="photo-grid">
-                    <img src="https://pic1.imgdb.cn/i/034K6NNN5JADr710AG7kEO.jpg" alt="新娘1" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6NF2vZDeJ5obxdJg3y.jpg" alt="新娘2" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6NMUmtHGFt8ga40cGs.jpg" alt="新娘3" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6NO2VaQ7aaYNeSjZkE.jpg" alt="新娘4" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6NHkt06fSzTAMlMFlE.jpg" alt="新娘5" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6NQCRsdzBc03akzpkX.jpg" alt="新娘6" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6NRHuHb4kB6qOujyWR.jpg" alt="新娘7" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6JqEt45uGTnch7AitU.jpg" alt="新娘8" loading="lazy" />
+                    <a href="https://pic1.imgdb.cn/i/034K6NNN5JADr710AG7kEO.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6NNN5JADr710AG7kEO.jpg" alt="新娘1" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6NF2vZDeJ5obxdJg3y.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6NF2vZDeJ5obxdJg3y.jpg" alt="新娘2" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6NMUmtHGFt8ga40cGs.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6NMUmtHGFt8ga40cGs.jpg" alt="新娘3" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6NO2VaQ7aaYNeSjZkE.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6NO2VaQ7aaYNeSjZkE.jpg" alt="新娘4" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6NHkt06fSzTAMlMFlE.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6NHkt06fSzTAMlMFlE.jpg" alt="新娘5" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6NQCRsdzBc03akzpkX.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6NQCRsdzBc03akzpkX.jpg" alt="新娘6" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6NRHuHb4kB6qOujyWR.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6NRHuHb4kB6qOujyWR.jpg" alt="新娘7" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6JqEt45uGTnch7AitU.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6JqEt45uGTnch7AitU.jpg" alt="新娘8" loading="lazy" /></div></a>
                 </div>
             </section>
 
-            <!-- ===== 章节：婚礼现场 ===== -->
+            <!-- 婚礼现场 -->
             <section class="chapter" id="chapter-ceremony">
                 <div class="chapter-header">
-                    <h2><span class="emoji">💍</span> 仪式 · 盟约</h2>
+                    <span class="floral-divider">❁ ✿ ❁</span>
+                    <div class="title-cn"><span class="emoji">💍</span> 仪式 · 盟约</div>
+                    <span class="title-en">Forever Vows</span>
                     <div class="sub">誓言如金，一生所爱</div>
                 </div>
                 <div class="photo-grid">
-                    <img src="https://pic1.imgdb.cn/i/034K6Se1S71qW3pnt9q919.jpg" alt="现场1" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6SqkMJ03o95IiW484m.jpg" alt="现场2" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6SXvQPS9yXf4wvBq2a.jpg" alt="现场3" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6SfUnGKqbVYzhH8qXd.jpg" alt="现场4" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6SoPhHNOZNSsbqXykP.jpg" alt="现场5" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6SipwB1bFeLbVRLJJE.jpg" alt="现场6" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6Ss0FGteK7j7p6IHCV.jpg" alt="现场7" loading="lazy" />
-                    <img src="https://pic1.imgdb.cn/i/034K6SnkSw8kd09d1wwVkd.jpg" alt="现场8" loading="lazy" />
+                    <a href="https://pic1.imgdb.cn/i/034K6Se1S71qW3pnt9q919.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6Se1S71qW3pnt9q919.jpg" alt="现场1" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6SqkMJ03o95IiW484m.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6SqkMJ03o95IiW484m.jpg" alt="现场2" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6SXvQPS9yXf4wvBq2a.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6SXvQPS9yXf4wvBq2a.jpg" alt="现场3" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6SfUnGKqbVYzhH8qXd.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6SfUnGKqbVYzhH8qXd.jpg" alt="现场4" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6SoPhHNOZNSsbqXykP.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6SoPhHNOZNSsbqXykP.jpg" alt="现场5" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6SipwB1bFeLbVRLJJE.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6SipwB1bFeLbVRLJJE.jpg" alt="现场6" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6Ss0FGteK7j7p6IHCV.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6Ss0FGteK7j7p6IHCV.jpg" alt="现场7" loading="lazy" /></div></a>
+                    <a href="https://pic1.imgdb.cn/i/034K6SnkSw8kd09d1wwVkd.jpg" class="glightbox"><div class="photo-item"><img src="https://pic1.imgdb.cn/i/034K6SnkSw8kd09d1wwVkd.jpg" alt="现场8" loading="lazy" /></div></a>
                 </div>
             </section>
 
-            <!-- ===== 章节：视频 ===== -->
+            <!-- 视频 -->
             <section class="chapter" id="chapter-video">
                 <div class="chapter-header">
-                    <h2><span class="emoji">🎬</span> 全程影像</h2>
+                    <span class="floral-divider">❁ ✿ ❁</span>
+                    <div class="title-cn"><span class="emoji">🎬</span> 全程影像</div>
+                    <span class="title-en">Our Film</span>
                     <div class="sub">每一帧都是爱的见证</div>
                 </div>
                 <div class="video-container">
@@ -607,8 +762,40 @@
         </main>
     </div>
 
+    <!-- ===== 花瓣飘落 (sakura-rain) ===== -->
+    <script>
+        // 配置 sakura-rain：数量 70 片，适中不遮挡
+        window.sakuraConfig = {
+            sakura: 70,
+            xSpeed: 0.6,
+            ySpeed: 0.5,
+            img: null
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/minz71/sakura-rain@v1.1.0/sakura-rain.js" defer></script>
+
+    <!-- ===== GLightbox 图片弹窗 JS ===== -->
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+
+    <!-- ===== 交互逻辑 ===== -->
     <script>
         (function() {
+            // ---- GLightbox 初始化 ----
+            const lightbox = GLightbox({
+                touchNavigation: true,
+                loop: true,
+                zoomable: true,
+                autoplayVideos: false,
+                openEffect: 'zoom',
+                closeEffect: 'zoom',
+                slideEffect: 'slide',
+                moreLength: 0,
+                plyr: {
+                    controls: ['play', 'pause', 'volume', 'fullscreen']
+                }
+            });
+
+            // ---- 目录切换 ----
             const app = document.getElementById('app');
             const navItems = document.querySelectorAll('.nav-item');
             const chapters = document.querySelectorAll('.chapter');
@@ -616,64 +803,39 @@
             const sidebar = document.getElementById('sidebar');
             const menuBtn = document.getElementById('menuBtn');
             const menuToggle = document.getElementById('menuToggle');
+
             let isViewAll = false;
             let currentTarget = 'chapter-flower';
 
-            // ---- 切换章节 ----
             function switchChapter(targetId) {
-                if (isViewAll) {
-                    // 如果处于"查看全部"模式，先退出
-                    exitViewAll();
-                }
-
+                if (isViewAll) exitViewAll();
                 currentTarget = targetId;
-
-                // 更新导航高亮
                 navItems.forEach(item => {
                     item.classList.toggle('active', item.dataset.target === targetId);
                 });
-
-                // 更新章节显示
                 chapters.forEach(ch => {
                     ch.classList.toggle('active', ch.id === targetId);
                 });
-
-                // 移动端自动收起侧边栏
-                if (window.innerWidth <= 600) {
-                    sidebar.classList.remove('open');
-                }
+                if (window.innerWidth <= 600) sidebar.classList.remove('open');
+                // 滚动到顶部
+                document.getElementById('mainContent').scrollTop = 0;
             }
 
-            // ---- 进入"查看全部"模式 ----
             function enterViewAll() {
                 isViewAll = true;
                 app.classList.add('show-all');
-
-                // 所有章节显示，所有导航取消高亮
                 navItems.forEach(item => item.classList.remove('active'));
-
-                // 按钮样式变化
                 viewAllBtn.textContent = '✕ 收起全部';
                 viewAllBtn.classList.add('active-mode');
-
-                // 滚动到顶部
                 document.getElementById('mainContent').scrollTop = 0;
-
-                // 移动端收起侧边栏
-                if (window.innerWidth <= 600) {
-                    sidebar.classList.remove('open');
-                }
+                if (window.innerWidth <= 600) sidebar.classList.remove('open');
             }
 
-            // ---- 退出"查看全部"模式 ----
             function exitViewAll() {
                 isViewAll = false;
                 app.classList.remove('show-all');
-
                 viewAllBtn.textContent = '📖 查看全部';
                 viewAllBtn.classList.remove('active-mode');
-
-                // 恢复当前章节的高亮和显示
                 navItems.forEach(item => {
                     item.classList.toggle('active', item.dataset.target === currentTarget);
                 });
@@ -682,29 +844,20 @@
                 });
             }
 
-            // ---- 切换"查看全部"模式 ----
             function toggleViewAll() {
-                if (isViewAll) {
-                    exitViewAll();
-                } else {
-                    enterViewAll();
-                }
+                isViewAll ? exitViewAll() : enterViewAll();
             }
 
-            // ---- 导航点击 ----
             navItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const target = this.dataset.target;
-                    if (target) {
-                        switchChapter(target);
-                    }
+                    if (target) switchChapter(target);
                 });
             });
 
-            // ---- 查看全部按钮 ----
             viewAllBtn.addEventListener('click', toggleViewAll);
 
-            // ---- 移动端菜单切换 ----
+            // ---- 移动端菜单 ----
             if (menuBtn && menuToggle) {
                 menuToggle.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -712,27 +865,18 @@
                 });
             }
 
-            // ---- 点击页面其他区域关闭移动端菜单 ----
             document.addEventListener('click', function(e) {
-                if (window.innerWidth <= 600) {
-                    if (!sidebar.contains(e.target)) {
-                        sidebar.classList.remove('open');
-                    }
-                }
-            });
-
-            // ---- 窗口变化时重置移动端状态 ----
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 600) {
+                if (window.innerWidth <= 600 && !sidebar.contains(e.target)) {
                     sidebar.classList.remove('open');
                 }
             });
 
-            // ---- 键盘快捷键：ESC 退出查看全部 ----
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 600) sidebar.classList.remove('open');
+            });
+
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && isViewAll) {
-                    exitViewAll();
-                }
+                if (e.key === 'Escape' && isViewAll) exitViewAll();
             });
 
         })();

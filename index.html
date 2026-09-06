@@ -453,9 +453,6 @@
 </head>
 <body>
 
-    <!-- ===== 花瓣容器 ===== -->
-    <div id="sakura-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden;"></div>
-
     <!-- ===== 主体 ===== -->
     <div class="app" id="app">
 
@@ -615,102 +612,347 @@
         </main>
     </div>
 
-    <!-- ===== 纯内联 Canvas 花瓣（不依赖任何外部库） ===== -->
+
+
+    <!-- ===== 樱花花瓣雨（sakura-rain.js 内联 + 花瓣图内联 base64） ===== -->
     <script>
-        (function() {
-            var container = document.getElementById('sakura-container');
-            if (!container) return;
+        window.sakuraConfig = {
+            sakura: 60,
+            xSpeed: 0.4,
+            ySpeed: 0.8,
+            rSpeed: 0.03,
+            direction: "TopRight",
+            zIndex: 9999,
+            imageSrc: "data:image/png;base64,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"
+        };
+    </script>
+    <script>
+/*!
+ * sakura-rain.js — 網頁櫻花飄落動畫
+ * https://github.com/minz71/sakura-rain
+ */
+(() => {
+  "use strict";
 
-            var canvas = document.createElement('canvas');
-            canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
-            container.appendChild(canvas);
-            var ctx = canvas.getContext('2d');
+  const CANVAS_ID = "canvas_sakura";
+  // 速度參數（xSpeed/ySpeed/rSpeed）以 60fps 的每幀位移為單位，
+  // 在高更新率螢幕上以 delta time 換算，飄落速度不會隨螢幕變快
+  const BASE_FRAME_MS = 1000 / 60;
+  // 分頁休眠或卡頓後恢復時，單幀最多追趕的幀數，避免花瓣瞬間跳出畫面
+  const MAX_DELTA = 3;
+  const MAX_PETAL_SIZE = 30;
+  // DPR 超過 2 對這種小貼圖沒有可見畫質差異，只會增加像素填充量
+  const DPR_CAP = 2;
 
-            var width, height;
-            var petals = [];
-            var count = 65;
-            var colors = [
-                'rgba(255, 182, 193, 0.8)',
-                'rgba(255, 218, 185, 0.8)',
-                'rgba(255, 240, 245, 0.8)',
-                'rgba(255, 205, 210, 0.8)',
-                'rgba(255, 192, 203, 0.7)'
-            ];
+  // 預設從腳本所在位置載入花瓣圖（CDN 與自架都同源）；
+  // 拿不到腳本位置時（例如被內嵌執行）退回 jsDelivr
+  const SCRIPT_SRC = document.currentScript && document.currentScript.src;
+  const DEFAULT_IMAGE_SRC = SCRIPT_SRC
+    ? new URL("sakura.png", SCRIPT_SRC).href
+    : "https://cdn.jsdelivr.net/gh/minz71/sakura-rain/sakura.png";
 
-            function resize() {
-                width = window.innerWidth;
-                height = window.innerHeight;
-                canvas.width = width;
-                canvas.height = height;
-            }
+  const isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
 
-            function Petal() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height - height;
-                this.size = 8 + Math.random() * 10;
-                this.speedY = 0.4 + Math.random() * 0.6;
-                this.speedX = -0.2 + Math.random() * 0.4;
-                this.rotation = Math.random() * 360;
-                this.rotationSpeed = 0.5 + Math.random() * 1.5;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.opacity = 0.6 + Math.random() * 0.4;
-            }
+  const reducedMotionQuery = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
 
-            Petal.prototype.update = function() {
-                this.y += this.speedY;
-                this.x += this.speedX + Math.sin(this.y * 0.01) * 0.3;
-                this.rotation += this.rotationSpeed;
-                if (this.y > height + 20) {
-                    this.y = -20;
-                    this.x = Math.random() * width;
-                }
-                if (this.x < -20) this.x = width + 20;
-                if (this.x > width + 20) this.x = -20;
-            };
+  function toNumber(value, fallback) {
+    const parsed = parseFloat(value);
+    return Number.isFinite(parsed) ? parsed : fallback;
+  }
 
-            Petal.prototype.draw = function() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation * Math.PI / 180);
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.ellipse(0, 0, this.size * 0.6, this.size * 0.4, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = 'rgba(255,255,255,0.2)';
-                ctx.beginPath();
-                ctx.ellipse(-2, -2, this.size * 0.2, this.size * 0.15, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            };
+  function normalizeConfig(raw) {
+    const config = raw || {};
+    let count = Math.max(0, Math.floor(toNumber(config.sakura, 30)));
+    if (isMobile) count = Math.floor(count * 0.5);
+    return {
+      count,
+      xSpeed: toNumber(config.xSpeed, 0.5),
+      ySpeed: toNumber(config.ySpeed, 0.5),
+      rSpeed: toNumber(config.rSpeed, 0.025),
+      direction: config.direction || "TopRight",
+      zIndex: Math.trunc(toNumber(config.zIndex, -1)),
+      imageSrc: config.imageSrc || DEFAULT_IMAGE_SRC,
+      renderer: config.renderer || "2d",
+    };
+  }
 
-            function init() {
-                resize();
-                petals = [];
-                for (var i = 0; i < count; i++) {
-                    var p = new Petal();
-                    p.y = Math.random() * height;
-                    petals.push(p);
-                }
-                animate();
-            }
+  class Petal {
+    constructor(config) {
+      this.config = config;
+      this.reset();
+    }
 
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-                for (var i = 0; i < petals.length; i++) {
-                    petals[i].update();
-                    petals[i].draw();
-                }
-                requestAnimationFrame(animate);
-            }
+    // 從畫面邊緣重新進場。direction 代表進場的邊：
+    // TopRight = 從上緣或右緣進場、往左下飄，其餘方向類推
+    reset() {
+      const { xSpeed, ySpeed, rSpeed, direction } = this.config;
+      const fromPrimaryEdge = Math.random() > 0.5;
+      const randomX = Math.random() * window.innerWidth;
+      const randomY = Math.random() * window.innerHeight;
+      const vx = Math.random() * xSpeed;
+      const vy = Math.random() * ySpeed;
 
-            window.addEventListener('resize', resize);
-            if (document.readyState === 'complete') {
-                init();
-            } else {
-                window.addEventListener('load', init);
-            }
-        })();
+      switch (direction) {
+        case "TopLeft":
+          this.x = fromPrimaryEdge ? randomX : 0;
+          this.y = fromPrimaryEdge ? 0 : randomY;
+          this.vx = vx;
+          this.vy = vy;
+          break;
+        case "BottomRight":
+          this.x = fromPrimaryEdge ? randomX : window.innerWidth;
+          this.y = fromPrimaryEdge ? window.innerHeight : randomY;
+          this.vx = -vx;
+          this.vy = -vy;
+          break;
+        case "BottomLeft":
+          this.x = fromPrimaryEdge ? randomX : 0;
+          this.y = fromPrimaryEdge ? window.innerHeight : randomY;
+          this.vx = vx;
+          this.vy = -vy;
+          break;
+        case "TopRight":
+        default:
+          this.x = fromPrimaryEdge ? randomX : window.innerWidth;
+          this.y = fromPrimaryEdge ? 0 : randomY;
+          this.vx = -vx;
+          this.vy = vy;
+          break;
+      }
+
+      this.rotation = Math.random() * 6;
+      this.vr = Math.random() * rSpeed;
+      this.size = MAX_PETAL_SIZE * Math.random() * (Math.random() * 0.4 + 0.6);
+    }
+
+    // 回傳 false 表示已飄出畫面
+    update(delta) {
+      this.x += this.vx * delta;
+      this.y += this.vy * delta;
+      this.rotation += this.vr * delta;
+      return (
+        this.x >= 0 &&
+        this.x <= window.innerWidth &&
+        this.y >= 0 &&
+        this.y <= window.innerHeight
+      );
+    }
+  }
+
+  class CanvasRenderer2D {
+    constructor(config, image) {
+      this.image = image;
+      this.dpr = 1;
+      this.sprite = null;
+
+      const existing = document.getElementById(CANVAS_ID);
+      if (existing) existing.remove();
+
+      this.canvas = document.createElement("canvas");
+      this.canvas.id = CANVAS_ID;
+      Object.assign(this.canvas.style, {
+        position: "fixed",
+        left: "0",
+        top: "0",
+        pointerEvents: "none",
+        zIndex: config.zIndex.toString(),
+      });
+      this.ctx = this.canvas.getContext("2d");
+      this.onResize = () => this.resize();
+      window.addEventListener("resize", this.onResize);
+      this.resize();
+      document.body.appendChild(this.canvas);
+    }
+
+    resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+      this.canvas.width = Math.round(window.innerWidth * dpr);
+      this.canvas.height = Math.round(window.innerHeight * dpr);
+      this.canvas.style.width = window.innerWidth + "px";
+      this.canvas.style.height = window.innerHeight + "px";
+      if (dpr !== this.dpr || !this.sprite) {
+        this.dpr = dpr;
+        this.buildSprite();
+      }
+    }
+
+    // 先把花瓣圖縮繪到小畫布，之後每幀從小畫布取樣，
+    // 比每幀直接縮放原圖便宜，也不會在高 DPR 螢幕上糊掉
+    buildSprite() {
+      const size = Math.ceil(MAX_PETAL_SIZE * this.dpr);
+      this.sprite = document.createElement("canvas");
+      this.sprite.width = size;
+      this.sprite.height = size;
+      this.sprite.getContext("2d").drawImage(this.image, 0, 0, size, size);
+    }
+
+    draw(petals) {
+      const ctx = this.ctx;
+      const dpr = this.dpr;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      for (const petal of petals) {
+        const cos = Math.cos(petal.rotation) * dpr;
+        const sin = Math.sin(petal.rotation) * dpr;
+        ctx.setTransform(cos, sin, -sin, cos, petal.x * dpr, petal.y * dpr);
+        ctx.drawImage(this.sprite, 0, 0, petal.size, petal.size);
+      }
+    }
+
+    destroy() {
+      window.removeEventListener("resize", this.onResize);
+      this.canvas.remove();
+    }
+  }
+
+  // renderer 欄位為未來的 3D 實作預留；目前僅支援 canvas 2D
+  function createRenderer(config, image) {
+    if (config.renderer !== "2d") {
+      console.warn(
+        `[sakura-rain] 不支援的 renderer "${config.renderer}"，改用 2d`
+      );
+    }
+    return new CanvasRenderer2D(config, image);
+  }
+
+  const imageCache = new Map();
+
+  function loadImage(src) {
+    if (!imageCache.has(src)) {
+      imageCache.set(
+        src,
+        new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = () =>
+            reject(new Error(`[sakura-rain] 無法載入花瓣圖片：${src}`));
+          img.src = src;
+        })
+      );
+    }
+    return imageCache.get(src);
+  }
+
+  const state = {
+    wantsRunning: false,
+    running: false,
+    config: null,
+    petals: [],
+    renderer: null,
+    rafId: 0,
+    lastTime: 0,
+    startToken: 0,
+  };
+
+  function frame(now) {
+    const delta = Math.min((now - state.lastTime) / BASE_FRAME_MS, MAX_DELTA);
+    state.lastTime = now;
+    for (const petal of state.petals) {
+      if (!petal.update(delta)) petal.reset();
+    }
+    state.renderer.draw(state.petals);
+    state.rafId = requestAnimationFrame(frame);
+  }
+
+  // 拆掉畫布並停止繪製，但保留 wantsRunning（供減少動態偏好切換時恢復）
+  function suspend() {
+    state.startToken++;
+    if (state.rafId) cancelAnimationFrame(state.rafId);
+    state.rafId = 0;
+    state.running = false;
+    if (state.renderer) {
+      state.renderer.destroy();
+      state.renderer = null;
+    }
+    state.petals = [];
+  }
+
+  async function runIfAllowed() {
+    if (!state.wantsRunning || state.running) return;
+    if (reducedMotionQuery.matches) return;
+
+    const token = ++state.startToken;
+    const config = state.config;
+    let image;
+    try {
+      image = await loadImage(config.imageSrc);
+    } catch (error) {
+      console.error(error.message);
+      return;
+    }
+    if (!document.body) {
+      await new Promise((resolve) =>
+        document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    }
+    // 等待期間若被 stop() 或重新 start()，放棄這次啟動
+    if (token !== state.startToken || !state.wantsRunning || state.running) {
+      return;
+    }
+
+    state.renderer = createRenderer(config, image);
+    state.petals = Array.from(
+      { length: config.count },
+      () => new Petal(config)
+    );
+    state.running = true;
+    state.lastTime = performance.now();
+    state.rafId = requestAnimationFrame(frame);
+  }
+
+  function start(rawConfig) {
+    state.config = normalizeConfig(
+      rawConfig === undefined ? window.sakuraConfig : rawConfig
+    );
+    state.wantsRunning = true;
+    suspend();
+    runIfAllowed();
+  }
+
+  function stop() {
+    state.wantsRunning = false;
+    suspend();
+  }
+
+  const onReducedMotionChange = () => {
+    if (reducedMotionQuery.matches) suspend();
+    else runIfAllowed();
+  };
+  if (reducedMotionQuery.addEventListener) {
+    reducedMotionQuery.addEventListener("change", onReducedMotionChange);
+  } else if (reducedMotionQuery.addListener) {
+    // Safari 13 以前
+    reducedMotionQuery.addListener(onReducedMotionChange);
+  }
+
+  window.sakuraRain = {
+    start,
+    stop,
+    restart: start,
+    get running() {
+      return state.running;
+    },
+  };
+
+  // 向下相容：舊版全域函數 startSakura(sakura, direction, zIndex)
+  window.startSakura = (sakura, direction, zIndex) => {
+    const overrides = {};
+    if (sakura !== undefined) overrides.sakura = sakura;
+    if (direction !== undefined) overrides.direction = direction;
+    if (zIndex !== undefined) overrides.zIndex = zIndex;
+    start(Object.assign({}, window.sakuraConfig, overrides));
+  };
+
+  if (!window.sakuraConfig || window.sakuraConfig.autoStart !== false) {
+    start(window.sakuraConfig);
+  }
+})();
+
     </script>
 
     <!-- ===== GLightbox 图片弹窗 JS ===== -->

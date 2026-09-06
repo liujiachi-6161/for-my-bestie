@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💍 婚礼纪念 · 我们的故事</title>
+    <style>
+        /* ===== 全局重置 & 字体 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #faf7f2;
+            color: #3d2c1e;
+            padding: 20px 0 60px;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 18px;
+        }
+
+        /* ===== 页头 ===== */
+        .header {
+            text-align: center;
+            padding: 30px 0 20px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #a67c6b;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #b8a094;
+            margin-top: 6px;
+            letter-spacing: 2px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: #dccfc7;
+            margin: 16px auto 0;
+        }
+
+        /* ===== 每个环节 ===== */
+        .section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #5a4033;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e6dbd3;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title span {
+            font-size: 22px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: #f0ebe6;
+        }
+
+        .photo-grid img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        /* ===== 视频区域 ===== */
+        .video-wrapper {
+            margin-top: 14px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            background: #1a1a1a;
+        }
+
+        .video-wrapper video {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 540px;
+            object-fit: contain;
+            background: #0d0d0d;
+        }
+
+        /* ===== 页脚 ===== */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 24px;
+            border-top: 1px solid #e6dbd3;
+            font-size: 13px;
+            color: #b8a094;
+            letter-spacing: 1px;
+        }
+
+        /* ===== 适配小屏手机 ===== */
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .photo-grid img {
+                height: 150px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .section-title {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ========== 页头 ========== -->
+        <div class="header">
+            <h1>💕 我们的婚礼 · 全记录</h1>
+            <p>从晨光到誓言 · 每一帧都是爱</p>
+            <div class="divider"></div>
+        </div>
+
+        <!-- ========== 花墙 ========== -->
+        <div class="section">
+            <div class="section-title"><span>🌸</span> 花墙 · 晨光</div>
+            <div class="photo-grid">
+                <img src="https://pic1.imgdb.cn/i/034K67EC5TzerNqc8ZvAfZ.jpg" alt="花墙1" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K67Sp2mo5i5kdJZ9XHM.jpg" alt="花墙2" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K67aCcMySlHcsleE0Lm.jpg" alt="花墙3" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K67Ecbd0eaH6dLUH0hv.jpg" alt="花墙4" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K67ZaP1Yj0CRqbZ3vBT.jpg" alt="花墙5" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K67NMUqPlDZXMh4Tqte.jpg" alt="花墙6" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K67apDcGLkVbIVo5oke.jpg" alt="花墙7" loading="lazy" />
+            </div>
+        </div>
+
+        <!-- ========== 户外 ========== -->
+        <div class="section">
+            <div class="section-title"><span>🌳</span> 户外 · 奔赴</div>
+            <div class="photo-grid">
+                <img src="https://pic1.imgdb.cn/i/034K6FQvjIY6FaiugUd3OG.jpg" alt="户外1" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6FOQji2xV4JSo6m3k1.jpg" alt="户外2" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6F6w4aIdrBQWaCq7pf.jpg" alt="户外3" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6FNpOhrZPJMIOMnNkt.jpg" alt="户外4" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6FNvLZqcPD8IPq9LMc.jpg" alt="户外5" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6FF88aQbHFyJftsZJF.jpg" alt="户外6" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6FSw0yBrPrc05arDYs.jpg" alt="户外7" loading="lazy" />
+            </div>
+        </div>
+
+        <!-- ========== 接亲 ========== -->
+        <div class="section">
+            <div class="section-title"><span>🚗</span> 接亲 · 欢庆</div>
+            <div class="photo-grid">
+                <img src="https://pic1.imgdb.cn/i/034K6JeqA09EZxkA9mpm9x.jpg" alt="接亲1" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6Jrm86ixvnFF6zMBVq.jpg" alt="接亲2" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6JXPlCuKgGWnEC5jpM.jpg" alt="接亲3" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6Jpp9UMOoatkOSWLjG.jpg" alt="接亲4" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6JWXZ1EBHyWumDnHA8.jpg" alt="接亲5" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6JZ32Zrkh0TUc4a7Bh.jpg" alt="接亲6" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6JqH2LUN1qU9jwX47e.jpg" alt="接亲7" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6JosTFP9SxoeHjunX5.jpg" alt="接亲8" loading="lazy" />
+            </div>
+        </div>
+
+        <!-- ========== 新娘和新房 ========== -->
+        <div class="section">
+            <div class="section-title"><span>👰</span> 新娘 · 新房</div>
+            <div class="photo-grid">
+                <img src="https://pic1.imgdb.cn/i/034K6NNN5JADr710AG7kEO.jpg" alt="新娘1" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6NF2vZDeJ5obxdJg3y.jpg" alt="新娘2" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6NMUmtHGFt8ga40cGs.jpg" alt="新娘3" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6NO2VaQ7aaYNeSjZkE.jpg" alt="新娘4" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6NHkt06fSzTAMlMFlE.jpg" alt="新娘5" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6NQCRsdzBc03akzpkX.jpg" alt="新娘6" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6NRHuHb4kB6qOujyWR.jpg" alt="新娘7" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6JqEt45uGTnch7AitU.jpg" alt="新娘8" loading="lazy" />
+            </div>
+        </div>
+
+        <!-- ========== 婚礼现场 ========== -->
+        <div class="section">
+            <div class="section-title"><span>💍</span> 仪式 · 盟约</div>
+            <div class="photo-grid">
+                <img src="https://pic1.imgdb.cn/i/034K6Se1S71qW3pnt9q919.jpg" alt="现场1" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6SqkMJ03o95IiW484m.jpg" alt="现场2" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6SXvQPS9yXf4wvBq2a.jpg" alt="现场3" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6SfUnGKqbVYzhH8qXd.jpg" alt="现场4" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6SoPhHNOZNSsbqXykP.jpg" alt="现场5" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6SipwB1bFeLbVRLJJE.jpg" alt="现场6" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6Ss0FGteK7j7p6IHCV.jpg" alt="现场7" loading="lazy" />
+                <img src="https://pic1.imgdb.cn/i/034K6SnkSw8kd09d1wwVkd.jpg" alt="现场8" loading="lazy" />
+            </div>
+        </div>
+
+        <!-- ========== 视频 ========== -->
+        <div class="section">
+            <div class="section-title"><span>🎬</span> 婚礼全程 · 影像</div>
+            <div class="video-wrapper">
+                <video
+                    src="https://5oimov9vt99alcjx.public.blob.vercel-storage.com/2472_raw.MP4"
+                    controls
+                    preload="metadata"
+                    playsinline
+                    webkit-playsinline
+                    poster="https://pic1.imgdb.cn/i/034K6Se1S71qW3pnt9q919.jpg"
+                ></video>
+            </div>
+        </div>
+
+        <!-- ========== 页脚 ========== -->
+        <div class="footer">
+            <p>❤️ 愿每一天都像今天一样闪闪发光 ❤️</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

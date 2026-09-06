@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>💍 婚礼纪念 · 我们的故事</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts 花体英文 + 优雅衬线中文 -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;600&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
 
-    <!-- GLightbox CSS -->
+    <!-- GLightbox 图片弹窗 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
     <style>
@@ -33,7 +33,6 @@
             background: #fcf9f7;
         }
 
-        /* ===== 左侧目录 ===== */
         .sidebar {
             width: 250px;
             min-width: 250px;
@@ -188,7 +187,6 @@
             color: #4a2e24;
         }
 
-        /* ===== 右侧主内容 ===== */
         .main {
             flex: 1;
             height: 100vh;
@@ -431,7 +429,6 @@
             }
         }
 
-        /* GLightbox 阴影增强 */
         .glightbox-container .gslide-media {
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
             border-radius: 12px;
@@ -453,13 +450,10 @@
 </head>
 <body>
 
-    <!-- ===== 花瓣容器 ===== -->
     <div id="sakura-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden;"></div>
 
-    <!-- ===== 主体 ===== -->
     <div class="app" id="app">
 
-        <!-- 侧边栏 -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-brand" id="menuToggle">
                 <div>
@@ -485,10 +479,8 @@
             </div>
         </aside>
 
-        <!-- 主内容 -->
         <main class="main" id="mainContent">
 
-            <!-- 花墙 -->
             <section class="chapter active" id="chapter-flower">
                 <div class="chapter-header">
                     <span class="floral-divider">❁ ✿ ❁</span>
@@ -507,7 +499,6 @@
                 </div>
             </section>
 
-            <!-- 户外 -->
             <section class="chapter" id="chapter-outdoor">
                 <div class="chapter-header">
                     <span class="floral-divider">❁ ✿ ❁</span>
@@ -526,7 +517,6 @@
                 </div>
             </section>
 
-            <!-- 接亲 -->
             <section class="chapter" id="chapter-reception">
                 <div class="chapter-header">
                     <span class="floral-divider">❁ ✿ ❁</span>
@@ -546,7 +536,6 @@
                 </div>
             </section>
 
-            <!-- 新娘和新房 -->
             <section class="chapter" id="chapter-bride">
                 <div class="chapter-header">
                     <span class="floral-divider">❁ ✿ ❁</span>
@@ -566,7 +555,6 @@
                 </div>
             </section>
 
-            <!-- 婚礼现场 -->
             <section class="chapter" id="chapter-ceremony">
                 <div class="chapter-header">
                     <span class="floral-divider">❁ ✿ ❁</span>
@@ -586,7 +574,6 @@
                 </div>
             </section>
 
-            <!-- 视频 -->
             <section class="chapter" id="chapter-video">
                 <div class="chapter-header">
                     <span class="floral-divider">❁ ✿ ❁</span>
@@ -606,7 +593,6 @@
                 </div>
             </section>
 
-            <!-- ===== 页脚声明 ===== -->
             <div style="text-align:center; padding:30px 0 10px; font-family:'Noto Serif SC',serif; font-size:13px; color:#b8a8a0; letter-spacing:1px; border-top:1px solid #ebe3db; margin-top:30px;">
                 <div>本网站为个人纪念 · 非商业用途 · 请勿商用</div>
                 <div style="margin-top:4px; color:#d4738a;">❤️ 祝福每一份爱 ❤️</div>
@@ -615,7 +601,7 @@
         </main>
     </div>
 
-    <!-- ===== 纯内联 Canvas 花瓣（不依赖任何外部库） ===== -->
+    <!-- ===== 纯内联 Canvas 花瓣（真实花瓣图片，不依赖外部库） ===== -->
     <script>
         (function() {
             var container = document.getElementById('sakura-container');
@@ -629,13 +615,10 @@
             var width, height;
             var petals = [];
             var count = 65;
-            var colors = [
-                'rgba(255, 182, 193, 0.8)',
-                'rgba(255, 218, 185, 0.8)',
-                'rgba(255, 240, 245, 0.8)',
-                'rgba(255, 205, 210, 0.8)',
-                'rgba(255, 192, 203, 0.7)'
-            ];
+
+            // 真实花瓣图片（Base64 编码的 SVG 粉色花瓣）
+            var petalImage = new Image();
+            petalImage.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='40%25' cy='30%25'%3E%3Cstop offset='0%25' stop-color='%23ffb6c1'/%3E%3Cstop offset='100%25' stop-color='%23ff8a9b'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cellipse cx='50' cy='55' rx='35' ry='45' fill='url(%23g)'/%3E%3Cellipse cx='50' cy='50' rx='30' ry='38' fill='%23ffb6c1' opacity='0.5'/%3E%3C/svg%3E";
 
             function resize() {
                 width = window.innerWidth;
@@ -647,25 +630,24 @@
             function Petal() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height - height;
-                this.size = 8 + Math.random() * 10;
-                this.speedY = 0.4 + Math.random() * 0.6;
+                this.size = 12 + Math.random() * 14;
+                this.speedY = 0.3 + Math.random() * 0.6;
                 this.speedX = -0.2 + Math.random() * 0.4;
                 this.rotation = Math.random() * 360;
-                this.rotationSpeed = 0.5 + Math.random() * 1.5;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.opacity = 0.6 + Math.random() * 0.4;
+                this.rotationSpeed = 0.3 + Math.random() * 1.2;
+                this.opacity = 0.7 + Math.random() * 0.3;
             }
 
             Petal.prototype.update = function() {
                 this.y += this.speedY;
-                this.x += this.speedX + Math.sin(this.y * 0.01) * 0.3;
+                this.x += this.speedX + Math.sin(this.y * 0.008) * 0.3;
                 this.rotation += this.rotationSpeed;
-                if (this.y > height + 20) {
-                    this.y = -20;
+                if (this.y > height + 30) {
+                    this.y = -30;
                     this.x = Math.random() * width;
                 }
-                if (this.x < -20) this.x = width + 20;
-                if (this.x > width + 20) this.x = -20;
+                if (this.x < -30) this.x = width + 30;
+                if (this.x > width + 30) this.x = -30;
             };
 
             Petal.prototype.draw = function() {
@@ -673,14 +655,18 @@
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.rotation * Math.PI / 180);
                 ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.ellipse(0, 0, this.size * 0.6, this.size * 0.4, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = 'rgba(255,255,255,0.2)';
-                ctx.beginPath();
-                ctx.ellipse(-2, -2, this.size * 0.2, this.size * 0.15, 0, 0, Math.PI * 2);
-                ctx.fill();
+                var s = this.size;
+                if (petalImage.complete && petalImage.naturalWidth > 0) {
+                    ctx.drawImage(petalImage, -s * 0.5, -s * 0.7, s, s * 1.2);
+                } else {
+                    var grad = ctx.createRadialGradient(0, 0, 2, 0, 0, s * 0.6);
+                    grad.addColorStop(0, '#ffb6c1');
+                    grad.addColorStop(1, '#ff8a9b');
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, s * 0.5, s * 0.35, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
                 ctx.restore();
             };
 
@@ -719,8 +705,7 @@
     <!-- ===== 交互逻辑 ===== -->
     <script>
         (function() {
-            // GLightbox 初始化
-            const lightbox = GLightbox({
+            var lightbox = GLightbox({
                 touchNavigation: true,
                 loop: true,
                 zoomable: true,
@@ -731,25 +716,24 @@
                 plyr: { controls: ['play', 'pause', 'volume', 'fullscreen'] }
             });
 
-            // 目录切换
-            const app = document.getElementById('app');
-            const navItems = document.querySelectorAll('.nav-item');
-            const chapters = document.querySelectorAll('.chapter');
-            const viewAllBtn = document.getElementById('viewAllBtn');
-            const sidebar = document.getElementById('sidebar');
-            const menuBtn = document.getElementById('menuBtn');
-            const menuToggle = document.getElementById('menuToggle');
+            var app = document.getElementById('app');
+            var navItems = document.querySelectorAll('.nav-item');
+            var chapters = document.querySelectorAll('.chapter');
+            var viewAllBtn = document.getElementById('viewAllBtn');
+            var sidebar = document.getElementById('sidebar');
+            var menuBtn = document.getElementById('menuBtn');
+            var menuToggle = document.getElementById('menuToggle');
 
-            let isViewAll = false;
-            let currentTarget = 'chapter-flower';
+            var isViewAll = false;
+            var currentTarget = 'chapter-flower';
 
             function switchChapter(targetId) {
                 if (isViewAll) exitViewAll();
                 currentTarget = targetId;
-                navItems.forEach(item => {
+                navItems.forEach(function(item) {
                     item.classList.toggle('active', item.dataset.target === targetId);
                 });
-                chapters.forEach(ch => {
+                chapters.forEach(function(ch) {
                     ch.classList.toggle('active', ch.id === targetId);
                 });
                 if (window.innerWidth <= 600) sidebar.classList.remove('open');
@@ -759,7 +743,7 @@
             function enterViewAll() {
                 isViewAll = true;
                 app.classList.add('show-all');
-                navItems.forEach(item => item.classList.remove('active'));
+                navItems.forEach(function(item) { item.classList.remove('active'); });
                 viewAllBtn.textContent = '✕ 收起全部';
                 viewAllBtn.classList.add('active-mode');
                 document.getElementById('mainContent').scrollTop = 0;
@@ -771,10 +755,10 @@
                 app.classList.remove('show-all');
                 viewAllBtn.textContent = '📖 查看全部';
                 viewAllBtn.classList.remove('active-mode');
-                navItems.forEach(item => {
+                navItems.forEach(function(item) {
                     item.classList.toggle('active', item.dataset.target === currentTarget);
                 });
-                chapters.forEach(ch => {
+                chapters.forEach(function(ch) {
                     ch.classList.toggle('active', ch.id === currentTarget);
                 });
             }
@@ -783,7 +767,7 @@
                 isViewAll ? exitViewAll() : enterViewAll();
             }
 
-            navItems.forEach(item => {
+            navItems.forEach(function(item) {
                 item.addEventListener('click', function() {
                     if (this.dataset.target) switchChapter(this.dataset.target);
                 });
